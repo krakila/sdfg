@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <link rel="icon" type="image/png" href="https://sun6-23.userapi.com/s/v1/if2/ElkTl-nb27QNee8hGBNJSl3N8cKSvR6koop67QP6fdnpGf14yq2y5CqtR_ezIhfRjqFN3fmXogumNbO0Wuszr8uJ.jpg?size=1536x1536&quality=96&crop=264,0,1536,1536&ava=1" ><!-- фавиконка -->
+  <title>Заставка</title>
+  <style>
+  body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #1c1c1b;
+    overflow: hidden;
+  }
+
+  canvas {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  #castle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    z-index: 2;
+    width: 100%;
+    max-height: 50vh;
+  }
+
+  @media only screen and (max-width: 480px) {
+    #castle {
+      height: 120%; /* Adjusted for smaller screens */
+
+    }
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 1024px) {
+    #castle {
+      max-height: 100%; /* Adjusted for medium-sized screens */
+    }
+  }
+  </style>
+</head>
+<body>
+  <img id="castle" src="https://www.freepngimg.com/thumb/castle/159168-photos-castle-cinderella-disney-free-photo.png" alt="Castle" width="300">
+  <script>
+    const GRAVITY = 0.05;
+    const FRICTION = 0.98;
+    const explodeParticleCount = 200;
+    const explosionPower = 8;
+    const explosionDuration = 1; // Duration of the explosion effect in seconds
+
+    function Firework(x, y, r, v, color, to) {
+      this.pos = createVector(x, y);
+      this.r = r;
+      this.color = color;
+      this.v = createVector(v.x, v.y);
+      this.to = to;
+      this.life = 1; // 1 second
+
+      this.draw = () => {
+        fill(this.color);
+        ellipse(this.pos.x, this.pos.y, this.r);
+      };
+
+      this.update = () => {
+        this.pos.add(this.v);
+        this.draw();
+        if (this.life > 0) {
+          this.life -= 0.007;
+        }
+      };
+    }
+
+    function ExploadeParticle(x, y, r, v, rgb) {
+      this.pos = createVector(x, y);
+      this.r = r;
+      this.v = createVector(v.x, v.y);
+      this.acc = createVector(0, GRAVITY);
+      this.friction = createVector(FRICTION, FRICTION);
+      this.opacity = 1;
+      this.color = `rgba(${rgb.r},${rgb.g},${rgb.b},${this.opacity})`;
+      this.life = explosionDuration; // Explosion duration in seconds
+
+      this.draw = () => {
+        if (this.opacity < 0) {
+          this.opacity = 0;
+        }
+        this.color = `rgba(${rgb.r},${rgb.g},${rgb.b},${this.opacity})`;
+        fill(this.color);
+        ellipse(this.pos.x, this.pos.y, this.r);
+      };
+
+      this.update = () => {
+        this.v.add(this.acc);
+        this.v.mult(this.friction);
+        this.pos.add(this.v);
+        if (this.opacity > 0) {
+          this.opacity -= 0.007;
+          this.life -= 0.007;
+        }
+        this.draw();
+      };
+
+    }
+    function hideEffects() {
+      // Сделать невидимыми все эффекты от фейерверков
+      fireworks = [];
+      explodeParticles = [];
+    }
+
+    let fireworks = [];
+    let explodeParticles = [];
+    let launchedFireworks = 0;
+    let totalFireworks = 5;
+    let fireworksLaunched = false;
+
+    function setup() {
+      let canvas = createCanvas(innerWidth, innerHeight);
+      canvas.style('z-index', '1');
+      noStroke();
+    }
+
+    function draw() {
+      background(0, 0, 0, 0);
+
+      fireworks.forEach((firework, index) => {
+        firework.update();
+        if (firework.pos.y <= firework.to || firework.life <= 0) {
+          for (let i = 0; i < explodeParticleCount; i++) {
+            let rad = (PI * 2) / explodeParticleCount;
+            let v = {
+              x: cos(rad * i) * random() * explosionPower,
+              y: sin(rad * i) * random() * explosionPower
+            };
+            let rgb = {
+              r: floor(random(0, 255)),
+              g: floor(random(0, 255)),
+              b: floor(random(0, 255))
+            };
+            explodeParticles.push(
+              new ExploadeParticle(firework.pos.x, firework.pos.y, 8, v, rgb)
+            );
+          }
+          fireworks.splice(index, 1);
+        }
+      });
+
+      explodeParticles.forEach((explodeParticle, index) => {
+        explodeParticle.update();
+        if (explodeParticle.life <= 0) {
+          explodeParticles.splice(index, 1);
+        }
+      });
+
+      // Check if all fireworks have been launched and exploded
+      if (launchedFireworks === totalFireworks && fireworks.length === 0 && explodeParticles.length === 0) {
+        // Redirect to the new site after the last firework disappears
+        window.location.href = 'disney.html';
+      }
+
+    }
+
+    function startFirework(x, y) {
+      let color = `rgb(${floor(random(0, 255))},${floor(random(0, 255))},${floor(random(0, 255))})`;
+      let toY = y - 200; // Adjust the explosion point
+      fireworks.push(
+        new Firework(
+          x,
+          y,
+          random(8, 12),
+          { x: 0, y: random(-8, -5) },
+          color,
+          toY
+        )
+      );
+      launchedFireworks++;
+    }
+
+    function launchFireworks() {
+      if (!fireworksLaunched) {
+        fireworksLaunched = true; // Set the flag to true to indicate fireworks have been launched
+        for (let i = 0; i < totalFireworks; i++) {
+          let x = innerWidth / 2 + random(-50, 50);
+          let y = innerHeight / 2 + random(150, 175);
+          setTimeout(() => {
+            startFirework(x, y);
+          }, i * 500);
+        }
+      }
+    }
+
+    // Handling image click
+    document.getElementById("castle").addEventListener("click", function(event) {
+      launchFireworks();
+    });
+  </script>
+</body>
+</html>

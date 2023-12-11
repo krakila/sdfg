@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Герои Дисней</title>
+  <link rel="icon" type="image/png" href="https://sun6-23.userapi.com/s/v1/if2/ElkTl-nb27QNee8hGBNJSl3N8cKSvR6koop67QP6fdnpGf14yq2y5CqtR_ezIhfRjqFN3fmXogumNbO0Wuszr8uJ.jpg?size=1536x1536&quality=96&crop=264,0,1536,1536&ava=1" ><!-- фавиконка -->
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .menu {
+      display: none; /* Change visibility to display */
+      background-color: #666;
+      padding: 10px;
+      text-align: center;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
+    img{
+      width: 90%;
+      height: 90%;
+    }
+
+    nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      gap: 20px;
+      padding: 10px;
+      background-color: #666;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    main {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+    }
+
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .character {
+      cursor: pointer;
+    }
+
+    /* Media Queries for Tablet */
+    @media only screen and (max-width: 1024px) {
+      nav, .characters {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      nav a {
+        font-size: 1.5em; /* Увеличение размера названий разделов */
+      }
+    }
+    .character {
+      cursor: pointer;
+    }
+
+
+    /* Media Queries for Mobile */
+    @media only screen and (max-width: 480px) {
+      nav {
+        display: none;
+        grid-template-columns: repeat(1, 1fr);
+      }
+
+      .burger-btn {
+        display: block;
+        background-color: #666;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .menu {
+        background-color: #666;
+        padding: 10px;
+        text-align: center;
+        visibility: visible;
+      }
+
+      .menu a {
+        display: block;
+        margin-bottom: 10px;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .del{
+        opacity: 0;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    /* Media Queries for Tablets and larger screens */
+    @media only screen and (min-width: 481px) {
+      .burger-btn {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 480px) {
+  nav {
+    display: none;
+  }
+
+  .burger-btn {
+    display: block;
+    background-color: #666;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .menu {
+    background-color: #666;
+    padding: 10px;
+    text-align: center;
+    visibility: visible;
+  }
+
+  .menu a {
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .characters {
+    grid-template-columns: repeat(1, 1fr); /* Изменение на один столбец */
+    margin-top: 10px; /* Уменьшение отступа между изображениями */
+  }
+
+  .character {
+    cursor: pointer;
+  }
+
+  .del {
+    opacity: 0;
+  }
+}
+footer {
+  background-color: lightblue;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 элемента в строку */
+  gap: 15px; /* Расстояние между элементами */
+}
+
+.footer-logo,
+.social-media,
+.contact-info {
+  margin-bottom: 10px;
+}
+
+
+.social-media {
+  text-align: center;
+  font-size: 1.2em; /* Увеличение размера текста */
+}
+
+.social-media p {
+  margin-bottom: 5px;
+}
+
+.social-media img {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.contact-info {
+  text-align: right;
+  font-size: 1.2em; /* Увеличение размера текста */
+}
+
+.contact-info a {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.footer-copyright {
+  grid-column: 1 / -1; /* Распространяется на все столбцы */
+  background-color: blue; /* Изменен цвет фона строки копирайта */
+  padding: 10px;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
+}
+@media only screen and (max-width: 1024px) {
+  footer {
+    background-color: lightblue;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr)
+    grid-template-areas:
+      "footer-logo"
+      "social-media contact-info"
+      "footer-copyright";
+  }
+
+  .footer-logo,
+  .footer-copyright {
+    margin-bottom: 10px;
+  }
+
+  .footer-logo {
+    grid-area: footer-logo;
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+    width: 100%;
+    display: grid;
+    align-items: center;
+  }
+
+  .footer-logo img {
+    width: 103%;
+  }
+
+  .social-media {
+    grid-area: social-media;
+    text-align: left;
+    width: 100%;
+    grid-row: 2;
+    grid-column: 2/1;
+    align-items: center;
+  }
+
+  .contact-info {
+    grid-area: contact-info;
+    text-align: right;
+    width: 100%;
+    height: 100%;
+    grid-row: 2;
+    grid-column: 2/6;
+    align-items: center;
+  }
+
+  .footer-copyright {
+    grid-area: footer-copyright;
+    background-color: blue;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+    grid-row: 4;
+  }
+}
+
+/* Media Queries for Mobile */
+@media only screen and (max-width: 480px) {
+  footer {
+    background-color: lightblue;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr)
+    grid-template-areas:
+      "footer-logo"
+      "social-media"
+      "contact-info"
+      "footer-copyright";
+  }
+
+  .footer-logo,
+  .footer-copyright {
+    margin-bottom: 10px;
+  }
+
+  .footer-logo {
+    grid-area: footer-logo;
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+    width: 100%;
+    display: grid;
+    align-items: center;
+  }
+
+  .footer-logo img {
+    width: 100%;
+  }
+
+  .social-media {
+    grid-area: social-media;
+    text-align: center;
+    width: 100%;
+    grid-row: 2;
+    grid-column: 2/3;
+    align-items: center;
+  }
+
+  .contact-info {
+    grid-area: contact-info;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    grid-row: 3;
+    grid-column: 3/2;
+    align-items: center;
+  }
+
+  .footer-copyright {
+    grid-area: footer-copyright;
+    background-color: blue;
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+    grid-row: 4;
+  }
+}
+
+.positionabs
+{
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  right: 30px;
+  botton: 100px;
+  width: 50px;
+  height: 50px;
+}
+
+  </style>
+</head>
+<body>
+
+<header>
+  <img class ="positionabs" src="https://sun6-23.userapi.com/s/v1/if2/ElkTl-nb27QNee8hGBNJSl3N8cKSvR6koop67QP6fdnpGf14yq2y5CqtR_ezIhfRjqFN3fmXogumNbO0Wuszr8uJ.jpg?size=1536x1536&quality=96&crop=264,0,1536,1536&ava=1" alt="Логотип" width="100" height="100">
+  <h1>Герои Дисней</h1>
+</header>
+<nav>
+  <a href="disney.html">Главная</a>
+  <a href="createhero.html">Обратная связь</a>
+  <a href="heroes.html">Герои</a>
+  <a href="villains.html">Злодеи</a>
+</nav>
+
+<div class="burger-btn" onclick="toggleMenu()">☰</div>
+
+<div class="menu">
+  <a href="disney.html">Главная</a>
+  <a href="createhero.html">Обратная связь</a>
+  <a href="heroes.html">Герои</a>
+  <a href="villains.html">Злодеи</a>
+</div>
+<main>
+<div class="characters">
+  <!-- Placeholder images and links, replace with actual content -->
+  <div class="character" onclick="location.href='belsneg.html';">
+    <img src="https://shumor.ru/wp-content/uploads/4/7/a/47ae24dcd6f2bb7fb61106d780aaf6b1.jpeg" alt="Белоснежка">
+    <figcaption>Белоснежка</figcaption>
+  </div>
+  <div class="character" onclick="location.href='pinok.html';">
+    <img src="https://ucare.timepad.ru/1be51e34-1e7a-412b-a577-fcab1f1fe535/poster_event_2228282.jpg" alt="Пиноккио">
+    <figcaption>Пиноккио</figcaption>
+  </div>
+  <div class="character" onclick="location.href='simba.html';">
+    <img src="https://gas-kvas.com/grafic/uploads/posts/2023-09/1695871337_gas-kvas-com-p-kartinki-simba-7.jpg" alt="Симба">
+    <figcaption>Симба</figcaption>
+  </div>
+  <div class="character" onclick="location.href='ariel.html';">
+    <img src="https://www.cinestar.de/media/cache/web_xl/media/filmbilder/t/the-little-mermaid-arielles-beginning/the-little-mermaid-arielles-beginning_sz-448640.jpg" alt="Ариэль">
+    <figcaption>Ариэль</figcaption>
+  </div>
+  <div class="character" onclick="location.href='alla.html';">
+    <img src="https://litinteres.ru/wp-content/uploads/2020/11/D3APwxhWoAAd1qT.jpg" alt="Аладдин">
+    <figcaption>Аладдин</figcaption>
+  </div>
+  <div class="character" onclick="location.href='als.html';">
+    <img src="https://i.ytimg.com/vi/kOCgE0ZWpkU/maxresdefault.jpg" alt="Эльза">
+    <figcaption>Эльза</figcaption>
+  </div>
+  <div class="character" onclick="location.href='anna.html';">
+    <img src="https://www.zastavki.com/pictures/originals/2020Cartoons_Anna_in_a_Cape_in_a_Cold_Forest_Cartoon_Frozen_2_138918_.jpg" alt="Анна">
+    <figcaption>Анна</figcaption>
+  </div>
+  <div class="character" onclick="location.href='ralph.html';">
+    <img src="https://drasler.ru/wp-content/uploads/2019/09/Картинки-ральф-из-мультика-016.jpg" alt="Ральф">
+    <figcaption>Ральф</figcaption>
+  </div>
+  <div class="character" onclick="location.href='moana.html';">
+    <img src="https://wallpapercosmos.com/w/full/0/7/6/50787-3840x2160-desktop-4k-moana-wallpaper-photo.jpg" alt="Моана">
+    <figcaption>Моана</figcaption>
+  </div>
+  <div class="character" onclick="location.href='sevgn.html';">
+    <img src="https://fikiwiki.com/uploads/posts/2022-02/1645041880_13-fikiwiki-com-p-kartinki-gnomov-14.png" alt="Семь гномов">
+    <figcaption>Семь гномов</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://static.wikia.nocookie.net/disney/images/9/9e/Profile_-_Gepetto.jpeg/revision/latest?cb=20190312064300" alt="Джепетто">
+    <figcaption>Джепетто</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/ea/02/c0/ea02c04d5dfef9ca5d9b7af9e9d4426b.jpg" alt="Дамбо">
+    <figcaption>Дамбо</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/f8/94/d4/f894d45c4f8711e99129930ae46766c4.jpg" alt="Тимоти Мышь">
+    <figcaption>Тимоти Мышь</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/24/2e/22/242e224d695b5fb334788b0496502b9a.jpg" alt="Фалин">
+    <figcaption>Фалин</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.film.ru/sites/default/files/filefield_paths/bambi1.jpg" alt="Бэмби">
+    <figcaption>Бэмби</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/a6/37/e0/a637e0509de67ed0a74325185558fe88.jpg" alt="Топотун">
+    <figcaption>Топотун</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/fa/50/71/fa5071e37cc2783f8badd22fa114740e.jpg" alt="Цветик">
+    <figcaption>Цветик</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://avatars.dzeninfra.ru/get-zen_doc/3023531/pub_5ea4024b156fe026d3395be6_5ea4027e007c871a159001cc/scale_1200" alt="Золушка">
+    <figcaption>Золушка</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://jeopardylabs.com/ugc/2021-08-31/285ba109-5202-40ff-b9df-bebe14fc03ba-unnamed.png" alt="Принц">
+    <figcaption>Принц</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.film.ru/sites/default/files/filefield_paths/cinderella-disneyscreencaps.com-5029.jpg" alt="Фея-крестная">
+    <figcaption>Фея-крестная</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/f1/d5/80/f1d58059115e0b4772119f0a330ffcd7.jpg" alt="Алиса">
+    <figcaption>Алиса</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/photos/36300000/Walt-Disney-Characters-image-walt-disney-characters-36399844-4284-3240.jpg" alt="Белый Кролик">
+    <figcaption>Белый Кролик</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.vsepsihologi.ru/wp-content/uploads/2019/04/шляпник.jpg" alt="Шляпник">
+    <figcaption>Шляпник</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://uprostim.com/wp-content/uploads/2021/04/image143-10.jpg" alt="Чеширский Кот">
+    <figcaption>Чеширский Кот</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://bestlifeonline.com/wp-content/uploads/sites/3/2020/06/Peterpan.jpg" alt="Питер Пэн">
+    <figcaption>Питер Пэн</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/15/0c/8b/150c8b1a731d1b1c53b1d79dcf7c5f68.jpg" alt="Венди">
+    <figcaption>Венди</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://s4.afisha.ru/mediastorage/38/25/1b501b39fb2c4e998e4059432538.jpg" alt="Бек">
+    <figcaption>Бек</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/4e/af/43/4eaf439c014708a766ed09e95f1cf6f4.jpg" alt="Тигр Лилли">
+    <figcaption>Тигр Лилли</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://favim.com/pd/p/orig/2019/02/03/gorgeous-disney-princesses-aurora-Favim.com-6837813.jpg" alt="Принцесса Аврора">
+    <figcaption>Принцесса Аврора</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/65/51/a3/6551a3bfd9705059f47d0a27e5f7bd56.jpg" alt="Принц Филипп">
+    <figcaption>Принц Филипп</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/3b/15/d0/3b15d05768459599f97ad06f9a0afbdc.jpg" alt="Феи добрые">
+    <figcaption>Феи добрые</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/f7/f3/c8/f7f3c80aa25fb5e334e4d435288468fe.jpg" alt="Мариен">
+    <figcaption>Мариен</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://static.wikia.nocookie.net/disney/images/6/66/Robin-hood-1080p-disneyscreencaps.com-3503.jpg" alt="Робин Гуд">
+    <figcaption>Робин Гуд</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://static.wikia.nocookie.net/disney/images/c/cc/Little_John.jpg/revision/latest?cb=20160706142503" alt="Маленький Джон">
+    <figcaption>Маленький Джон</figcaption>
+  </div>
+
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://slovnet.ru/wp-content/uploads/2019/02/6-6.png" alt="Принц Эрик">
+    <figcaption>Принц Эрик</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://disney-classic.ru/wp-content/uploads/Profile_-_Flounder.jpg" alt="Флаундер">
+    <figcaption>Флаундер</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.ytimg.com/vi/kcrhjjZKRrs/maxresdefault.jpg" alt="Себастьян">
+    <figcaption>Себастьян </figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/11/43/a8/1143a8720c5a1c1299af80903f5f31fb.png" alt="Белль">
+    <figcaption>Белль</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/polls/1677000/1677741_1522768842377_full.jpg" alt="Чудовище">
+    <figcaption>Чудовище</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images5.fanpop.com/image/forum/165000/165151_1330285423100_full.jpg" alt="Люмьер">
+    <figcaption>Люмьер</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.kino-teatr.ru/movie/kadr/36546/1266883.jpg" alt="Когсворт">
+    <figcaption>Когсворт</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://m.media-amazon.com/images/M/MV5BNzg5NDUyNzgtYWYxYS00NzRkLWJkZGYtZTU4MWExZmY5YmU1XkEyXkFqcGdeQXVyNTQxMTIxMTk@._V1_.jpg" alt="Мадам Гардероб">
+    <figcaption>Мадам Гардероб</figcaption>
+  </div>
+
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="http://fashionindustrybroadcast.com/wp-content/uploads/2015/03/936918_1327659046197_full.jpg" alt="Миссис Потс">
+    <figcaption>Миссис Потс</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://vignette4.wikia.nocookie.net/disney/images/5/50/Beauty-and-the-beast-disneyscreencaps.com-7992.jpg/revision/latest?cb=20141227183124" alt="Чип">
+    <figcaption>Чип</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/polls/1733000/1733417_1566633869361_full.jpg" alt="Жасмин">
+    <figcaption>Жасмин</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://mdk.red/m/57Ny5OOA/718x540.jpg" alt="Джинн">
+    <figcaption>Джинн</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.obsev.com/wp-content/uploads/sites/2/2019/08/abu-1024x768.jpg.optimal.jpg" alt="Абу">
+    <figcaption>Абу</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://a.d-cd.net/8659f2es-1920.jpg" alt="Коврик">
+    <figcaption>Коврик</figcaption>
+  </div>
+
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://paypress.ru/uploads/2021/06/1624648220-король-лев.jpeg" alt="Муфаса">
+    <figcaption>Муфаса</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/f5/f4/d2/f5f4d2553c130aa1f7cf39eaae5f02bb.jpg" alt="Нала">
+    <figcaption>Нала</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.funnyart.club/uploads/posts/2023-02/1675360084_www-funnyart-club-p-timon-i-pumba-smeshnie-vkontakte-14.jpg" alt="Тимон">
+    <figcaption>Тимон</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://disney-classic.ru/wp-content/uploads/Profile_-_Pumbaa.jpg" alt="Пумба">
+    <figcaption>Пумба</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://getwallpapers.com/wallpaper/full/7/6/a/1095221-cool-pocahontas-wallpaper-2560x1440-screen.jpg" alt="Покахонтас">
+    <figcaption>Покахонтас</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://jkkrd.ru/wp-content/uploads/6/7/2/6723e1421fedb0446ef91eb7ceea6341.jpeg" alt="Джон Смит">
+    <figcaption>Джон Смит</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/0b/6c/db/0b6cdb18897b3b6ea8b208cbeb739506.jpg" alt="Бабушка Ива">
+    <figcaption>Бабушка Ива</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/d6/70/76/d67076b9ff19fe5629bb3e493907a208.jpg" alt="Флит">
+    <figcaption>Флит</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/1f/ef/40/1fef40db9519a89b1f66d78c62921ba1.jpg" alt="Мико">
+    <figcaption>Мико</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://media.2x2tv.ru/content/images/2023/02/hunchback-of-the-notre-dame-disneyscreencaps.com-1534.jpg" alt="Квазимодо">
+    <figcaption>Квазимодо</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/photos/35700000/Walt-Disney-Screencaps-Esmeralda-walt-disney-characters-35729185-5000-2813.jpg" alt="Эсмеральда">
+    <figcaption>Эсмеральда</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://img2.wikia.nocookie.net/__cb20150315155659/disney/images/b/ba/Phoebus_5.PNG" alt="Фебус">
+    <figcaption>Фебус</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://kartinki.pics/uploads/posts/2022-03/1647559914_71-kartinkin-net-p-gerkules-kartinki-80.jpg" alt="Геркулес">
+    <figcaption>Геркулес</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://tn.fishki.net/20/preview/3852325.jpg" alt="Зевс">
+    <figcaption>Зевс</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://disney-classic.ru/wp-content/uploads/Profile_-_Megara.jpg" alt="Мегара">
+    <figcaption>Мегара</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/a3/81/5f/a3815f51a27704ab2d5a13d0715549f9.jpg" alt="Гера">
+    <figcaption>Гера</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://quizzable.com/wp-content/uploads/2020/03/mulan.jpg" alt="Мулан">
+    <figcaption>Мулан</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://kg-portal.ru/img/91248/main_2x.jpg" alt="Мушу">
+    <figcaption>Мушу</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://kg-portal.ru/img/86595/main_2x.jpg" alt="Ли Шан">
+    <figcaption>Ли Шан</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://cdn1.ozone.ru/s3/multimedia-9/6119202093.jpg" alt="Тарзан">
+    <figcaption>Тарзан</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://carboncostume.com/wordpress/wp-content/uploads/2018/10/jane-porter-1.jpg" alt="Джейн">
+    <figcaption>Джейн</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.ytimg.com/vi/Pxsfn0W6QYA/maxresdefault.jpg" alt="Кала">
+    <figcaption>Кала</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://img.buzzfeed.com/buzzfeed-static/static/2018-03/28/21/asset/buzzfeed-prod-web-09/sub-buzz-19302-1522287974-2.png" alt="Майло">
+    <figcaption>Майло</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/8d/ce/b8/8dceb82fe9932ab768aa1e53ae51adad.jpg" alt="Кидагакаш">
+    <figcaption>Кидагакаш</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://imgix.ranker.com/user_node_img/50037/1000724666/original/go-get-and-_39_em-tiger-photo-u1?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&w=650" alt="Одри">
+    <figcaption>Одри</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.catspawdynamics.com/wp-content/uploads/2020/06/atlantis-cookie.jpg" alt="Джебедая">
+    <figcaption>Джебедая</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://vignette1.wikia.nocookie.net/disney/images/8/8d/Atlantis-milos-return-disneyscreencaps.com-4142.jpg/revision/latest?cb=20130517190601" alt="Крот">
+    <figcaption>Крот</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/photos/35100000/Atlantis-The-Lost-Empire-Blu-ray-atlantis-the-lost-empire-35185255-1920-816.jpg" alt="Винни">
+    <figcaption>Винни</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://getwallpapers.com/wallpaper/full/0/8/c/325932.jpg" alt="Лило">
+    <figcaption>Лило</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://krasivosti.pro/uploads/posts/2023-01/1674303391_krasivosti-pro-p-stich-sobaka-krasivo-32.jpg" alt="Стич">
+    <figcaption>Стич</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/91/df/5a/91df5aa34137c2d1a28378da35d745d6.jpg" alt="Нани">
+    <figcaption>Нани</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://wallpapers.com/images/hd/lilo-and-stitch-david-kawena-3ag17xsyp62jqx4y.jpg" alt="Дэвид">
+    <figcaption>Дэвид</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://slovnet.ru/wp-content/uploads/2018/11/2-10.png" alt="Пликли">
+    <figcaption>Пликли</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://vignette.wikia.nocookie.net/disney/images/3/3e/Stitch-the-movie-disneyscreencaps.com-6073.jpg/revision/latest?cb=20151105142053" alt="Джамбо">
+    <figcaption>Джамбо</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://kartinki.pics/uploads/posts/2022-03/thumbs/1647939774_10-kartinkin-net-p-kartinki-volta-11.jpg" alt="Вольт">
+    <figcaption>Вольт</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="http://bolt.aniworld.ru/pics/giant_sshots/019.jpg" alt="Пенни">
+    <figcaption>Пенни</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://voivod.club/uploads/posts/2023-08/1690964093_voivod-club-p-varezhka-iz-volta-oboi-8.jpg" alt="Варежка">
+    <figcaption>Варежка</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://discourse.disneyheroesgame.com/uploads/default/original/3X/a/2/a228ac5c4485ce07ebdb7d0bcb0a076defc5b168.jpeg" alt="Рино">
+    <figcaption>Рино</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.youloveit.ru/uploads/gallery/main/767/youloveit_ru_ross_princess_and_the_frog1_8.jpg" alt="Тиана">
+    <figcaption>Тиана</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://img.buzzfeed.com/buzzfeed-static/static/2021-08/23/19/asset/265cd6071f0e/sub-buzz-405-1629746324-35.jpg" alt="Навин">
+    <figcaption>Навин</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://ovideo.ru/images/gallery/0000/6098/0032.jpg" alt="Луи">
+    <figcaption>Луи</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.obsev.com/wp-content/uploads/sites/2/2019/08/rayprincess-1024x768.jpg.optimal.jpg" alt="Рэй">
+    <figcaption>Рэй</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/de/7f/c2/de7fc2bfc3a9ba3416018eed4216711c.png" alt="Рапунцель">
+    <figcaption>Рапунцель</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://img.badfon.ru/original/1920x1080/c/6b/flinn-rayder-rapuncel.jpg" alt="Флинн Райдер">
+    <figcaption>Флинн Райдер</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/20/e9/17/20e9175e73727e7f362226dbcfa4f920.jpg" alt="Максимус">
+    <figcaption>Максимус</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/fa/eb/a9/faeba9e6334cb6ba9cca8979cfb64954.jpg" alt="Паскаль">
+    <figcaption>Паскаль</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://thesun.co.uk/wp-content/uploads/2020/06/NINTCHDBPICT000306733364.jpg" alt="Винни-Пух">
+    <figcaption>Винни-Пух</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/photos/41100000/Piglet-Pooh-s-Heffalump-Movie-piglet-41192955-1024-572.jpg" alt="Пятачок">
+    <figcaption>Пятачок</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://koshka.top/uploads/posts/2021-12/1638808029_2-koshka-top-p-multik-s-tigrom-2.png" alt="Тигра">
+    <figcaption>Тигра</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://img.razrisyika.ru/kart/108/429603-oslik-ia-4.jpg" alt="Иа">
+    <figcaption>Иа</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://avatars.dzeninfra.ru/get-zen_doc/1712263/pub_625ae04fe172d02ca000146e_625ae3daab68c7653faf353f/scale_1200" alt="Кролик">
+    <figcaption>Кролик</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://grandgames.net/puzzle/f1200/kristof_i_sven.jpg" alt="Кристоф">
+    <figcaption>Кристоф</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/75/5a/fc/755afc91d285a24ff0b87bba7f711dcd.jpg" alt="Олаф">
+    <figcaption>Олаф</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/736x/52/0c/6f/520c6fbfcb1e4c74a4ca5c13dbe574fa--the-face-big-hero-.jpg" alt="Хиро Хамада">
+    <figcaption>Хиро Хамада</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/7756/1167756-h-d564af91bf33" alt="Бэймакс">
+    <figcaption>Бэймакс</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://disney-planet.fr/wp-content/uploads/2015/01/gogo-tomago-personnage-les-nouveaux-heros-07.jpg" alt="Го Го Томагатси">
+    <figcaption>Го Го Томагатси</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/photos/39400000/Wasabi-big-hero-6-39413254-614-702.png" alt="Васаби">
+    <figcaption>Васаби</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.ytimg.com/vi/HFffYgM98f4/maxresdefault.jpg" alt="Фред">
+    <figcaption>Фред</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/de/5f/d9/de5fd9ae4f976bd537a06a0ad7996a4b.jpg" alt="Хани Лемон">
+    <figcaption>Хани Лемон</figcaption>
+  </div>
+
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://blog.yiningkarlli.com/content/images/2016/Feb/zoot_35.jpg" alt="Джуди Хопс">
+    <figcaption>Джуди Хопс</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://w.forfun.com/fetch/49/4906ed9de46a86fb3cce4fa15a050ca5.jpeg" alt="Ник Уайлд">
+    <figcaption>Ник Уайлд</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://vignette.wikia.nocookie.net/disney/images/b/bd/Zootopia_Insubordination!.png/revision/latest?cb=20160220141316" alt="Капитан Буйволсон">
+    <figcaption>Капитан Буйволсон</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://www.timeout.ru/wp-content/uploads/2023/06/snimok-ekrana-2023-06-20-122434.jpg" alt="Блитз">
+    <figcaption>Блитз</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://gas-kvas.com/grafic/uploads/posts/2023-10/1696416831_gas-kvas-com-p-kartinki-maui-27.jpg" alt="Мауи">
+    <figcaption>Мауи</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/30/52/76/3052763a629fc49d62e596ddaea0a033.jpg" alt="Грамма Тала">
+    <figcaption>Грамма Тала</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://funforkids.ru/pictures/moanawp/moana20.jpg" alt="Хей-Хей">
+    <figcaption>Хей-Хей</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://fonoteka.top/uploads/posts/2021-05/1620788115_32-phonoteka_org-p-printsessu-vanilopu-fon-keks-35.jpg" alt="Ванеллопа фон Кекс">
+    <figcaption>Ванеллопа фон Кекс</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://images6.fanpop.com/image/forum/205000/205107_1375444761279_full.png" alt="Мастер Феликс-младший">
+    <figcaption>Мастер Феликс-младший</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://tsarap.ru/wp-content/uploads/2022/02/WreckItRalph2012_6.jpg" alt="Сержант Калхоун">
+    <figcaption>Сержант Калхоун</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.pinimg.com/originals/ae/63/42/ae6342dfa232305a419ebe28cb554a1e.png" alt="Шанкс">
+    <figcaption>Шанкс</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://i.ytimg.com/vi/Jx1NMaTVTuY/maxresdefault.jpg" alt="Ноу хао">
+    <figcaption>Ноу хао</figcaption>
+  </div>
+  <div class="character" onclick="location.href='character2.html';">
+    <img src="https://sun9-13.userapi.com/impg/86tjfpO0yQz901tj_nNQTNPSkOubniBqdi31Jw/5Phqf79X_aY.jpg?size=1280x720&quality=95&sign=ef27c201aa9aca5946a2f38e36ecbbfd&type=album" alt="Нокк">
+    <figcaption>Нокк</figcaption>
+  </div>
+  <!-- Repeat for other characters -->
+</div>
+</main>
+
+<footer>
+<div class="footer-content">
+  <div class="footer-logo">
+    <img src="https://kokoc.com/upload/blog/611/6.png" alt="Дисней Лого">
+  </div>
+  <div class="social-media">
+    <p>Социальные сети:</p>
+    <a href="https://vk.com/kohaser" target="_blank">
+      <img src="https://deskmed.ru/wp-content/files/photo-2-1536x1536.png" alt="VK Icon">
+    </a>
+    <a href="https://t.me/krakila" target="_blank">
+      <img src="https://artgambling.ru/telegram_logo.png" alt="Telegram Icon">
+    </a>
+  </div>
+  <div class="contact-info">
+    <p>Связаться с нами:</p>
+    <a href="tel:+1234567890">+79163922068</a>
+    <a href="mailto:info@disney.com">boychakter24@mail.ru</a>
+  </div>
+</div>
+<p>&copy; 2023 Дисней. Все права защищены.</p>
+</footer>
+
+<script>
+function toggleMenu() {
+  var menu = document.querySelector('.menu');
+  var burgerBtn = document.querySelector('.burger-btn');
+  if (menu.style.display === 'block') {
+    menu.style.display = 'none';
+    burgerBtn.textContent = '☰';
+  } else {
+    menu.style.display = 'block';
+    burgerBtn.textContent = '✖';
+  }
+}
+document.addEventListener("DOMContentLoaded", function () {
+  var characters = document.querySelectorAll(".character");
+
+  characters.forEach(function (character) {
+    character.style.backgroundColor = "transparent"; // Установим прозрачный фон
+    character.style.border = "0"; // Убираем границу
+
+    character.addEventListener("mouseover", function () {
+      addRainbowBorder(character);
+    });
+
+    character.addEventListener("mouseout", function () {
+      removeRainbowBorder(character);
+    });
+  });
+
+  function addRainbowBorder(element) {
+    element.style.transition = "background-color 0.2s ease-in-out";
+    element.style.backgroundImage = "none"; // Убираем градиент
+    animateBackgroundColor(element);
+  }
+
+  function animateBackgroundColor(element) {
+    var colors = ["#f06", "#9f6", "#06f", "#f06"];
+    var currentColorIndex = 0;
+
+    function changeColor() {
+      element.style.backgroundColor = colors[currentColorIndex];
+      currentColorIndex = (currentColorIndex + 1) % colors.length;
+    }
+
+    element.animationInterval = setInterval(changeColor, 500);
+  }
+
+  function removeRainbowBorder(element) {
+    clearInterval(element.animationInterval);
+    element.style.transition = "background-color 0.2s ease-in-out";
+    element.style.backgroundColor = "transparent";
+  }
+});
+</script>
+</body>
+</html>

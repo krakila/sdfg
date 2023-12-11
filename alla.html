@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Герой</title>
+  <link rel="icon" type="image/png" href="https://sun6-23.userapi.com/s/v1/if2/ElkTl-nb27QNee8hGBNJSl3N8cKSvR6koop67QP6fdnpGf14yq2y5CqtR_ezIhfRjqFN3fmXogumNbO0Wuszr8uJ.jpg?size=1536x1536&quality=96&crop=264,0,1536,1536&ava=1" ><!-- фавиконка -->
+  <style>
+    body {
+      background-color: transparent;
+      font-size: 14px;
+      line-height: 1.75;
+      margin: 0;
+      font-family: Arial, sans-serif;
+
+    }
+
+
+    .pi-theme-blue {
+      width: 270px;
+      border: 1px solid #000088;
+      background-color: transparent;
+      text-align: center;
+    }
+
+    .pi-background {
+      background-color: #029cfd;
+    }
+
+    .pi-border-color {
+      border-color: #a956e9;
+      border-width: 3px;
+    }
+
+    .portable-infobox {
+      border-radius: 3px;
+      border-style: solid;
+      border-width: 1px;
+      float: left; /* Обтекание вокруг элементов */
+      margin: 0 18px 18px 0; /* Отступы обтекания */
+      width: 270px;
+      position: relative;
+
+    }
+
+    .pi-header-stripe {
+      background-color: #a956e9;
+      color: white;
+      padding: 4px;
+      text-align: center;
+    }
+
+    .pi-header-stripe-all {
+      background-color: #a956e9;
+      color: white;
+      padding: 1px;
+      text-align: center;
+    }
+
+    img {
+      width: 100%;
+      height: 150%;
+    }
+
+    .pop{
+      float: left; /* обтекание справа */
+      margin-right: 20px; /* Отступ справа */
+    }
+    .charaj{
+      font-size: 20px;
+    }
+    .gorj{
+      white-space: nowrap;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+    }
+    nav {
+      display: none;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .burger-btn {
+      display: block;
+      background-color: #666;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .menu {
+      background-color: #666;
+      padding: 10px;
+      text-align: center;
+      display: none;
+    }
+
+    .menu a {
+      display: block;
+      margin-bottom: 10px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    nav {
+      display: none;
+    }
+  footer {
+    background-color: lightblue;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 элемента в строку */
+    gap: 15px; /* Расстояние между элементами */
+  }
+
+  .footer-logo,
+  .social-media,
+  .contact-info {
+    margin-bottom: 10px;
+  }
+  .footer-logo img{
+    width: 100%;
+    height: 100%;
+  }
+
+
+  .social-media {
+    text-align: center;
+    font-size: 1.2em; /* Увеличение размера текста */
+  }
+
+  .social-media p {
+    margin-bottom: 5px;
+  }
+
+  .social-media img {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .contact-info {
+    text-align: right;
+    font-size: 1.2em; /* Увеличение размера текста */
+  }
+
+  .contact-info a {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .footer-copyright {
+    grid-column: 1 / -1; /* Распространяется на все столбцы */
+    background-color: blue; /* Изменен цвет фона строки копирайта */
+    padding: 10px;
+    margin-top: 10px;
+    color: white;
+    text-align: center;
+  }
+  @media only screen and (max-width: 1024px) {
+    footer {
+      background-color: lightblue;
+      padding: 15px;
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr)
+      grid-template-areas:
+        "footer-logo"
+        "social-media contact-info"
+        "footer-copyright";
+    }
+
+    .footer-logo,
+    .footer-copyright {
+      margin-bottom: 10px;
+    }
+
+    .footer-logo {
+      grid-area: footer-logo;
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      width: 100%;
+      display: grid;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      width: 103%;
+      height: 100%;
+    }
+
+    .social-media {
+      grid-area: social-media;
+      text-align: left;
+      width: 100%;
+      grid-row: 2;
+      grid-column: 2/1;
+      align-items: center;
+    }
+
+    .contact-info {
+      grid-area: contact-info;
+      text-align: right;
+      width: 100%;
+      height: 100%;
+      grid-row: 2;
+      grid-column: 2/6;
+      align-items: center;
+    }
+
+    .footer-copyright {
+      grid-area: footer-copyright;
+      background-color: blue;
+      padding: 10px;
+      margin-top: 10px;
+      color: white;
+      text-align: center;
+      grid-row: 4;
+    }
+  }
+
+  /* Media Queries for Mobile */
+  @media only screen and (max-width: 480px) {
+    footer {
+      background-color: lightblue;
+      padding: 15px;
+      color: white;
+      text-align: center;
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr)
+      grid-template-areas:
+        "footer-logo"
+        "social-media"
+        "contact-info"
+        "footer-copyright";
+    }
+
+    .footer-logo,
+    .footer-copyright {
+      margin-bottom: 10px;
+    }
+
+    .footer-logo {
+      grid-area: footer-logo;
+      grid-row: 1/-1;
+      grid-column: 1/-1;
+      width: 100%;
+      display: grid;
+      align-items: center;
+    }
+
+    .footer-logo img {
+      width: 100%;
+      height: :100%;
+    }
+
+    .social-media {
+      grid-area: social-media;
+      text-align: center;
+      width: 100%;
+      grid-row: 2;
+      grid-column: 2/3;
+      align-items: center;
+    }
+
+    .contact-info {
+      grid-area: contact-info;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      grid-row: 3;
+      grid-column: 3/2;
+      align-items: center;
+    }
+
+    .footer-copyright {
+      grid-area: footer-copyright;
+      background-color: blue;
+      padding: 10px;
+      margin-top: 10px;
+      color: white;
+      text-align: center;
+      grid-row: 4;
+    }
+  }
+  @media only screen and (max-width: 480px) {
+    .pop {
+  float: none;
+  margin: 0 auto; /* Центрирование блока */
+  width: 100%;
+}
+
+.pi-theme-blue {
+  width: 99%;
+}
+
+.pi-background {
+  background-color: #029cfd;
+}
+
+.pi-border-color {
+  border-color: #a956e9;
+  border-width: 3px;
+}
+
+.portable-infobox {
+  margin: 0;
+}
+.charaj {
+    font-size: 16px; /* Уменьшение размера шрифта для лучшей читаемости на мобильных устройствах */
+  }
+
+  /* Дополнительные стили для центрирования текста под рамкой */
+  .charaj,
+  .gorj {
+    text-align: center;
+  }
+  .pi-item.pi-image img {
+    height: auto;
+  }
+  header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    width: 101.5%;
+    height: 100%;
+  }
+  .burger-btn {
+    display: block;
+    background-color: #666;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    width: 96%;
+    height: 100%;
+  }
+
+  }
+
+  .positionabs
+  {
+  	position: absolute;
+  	top: 20px;
+  	left: 25px;
+  	right: 30px;
+  	botton: 100px;
+   	width: 50px;
+    height: 50px;
+  }
+
+    </style>
+  </head>
+  <body>
+
+  <header>
+    <img class ="positionabs" src="https://sun6-23.userapi.com/s/v1/if2/ElkTl-nb27QNee8hGBNJSl3N8cKSvR6koop67QP6fdnpGf14yq2y5CqtR_ezIhfRjqFN3fmXogumNbO0Wuszr8uJ.jpg?size=1536x1536&quality=96&crop=264,0,1536,1536&ava=1" alt="Логотип" width="100" height="100">
+    <h1>Герой</h1>
+  </header>
+  <div class="burger-btn" onclick="toggleMenu()">☰</div>
+
+  <div class="menu">
+    <a href="disney.html">Главная</a>
+    <a href="screatehero.html">Обратная связь</a>
+    <a href="heroes.html">Герои</a>
+    <a href="villains.html">Злодеи</a>
+  </div>
+  <div class="pop">
+  <aside role="region" class="pi-background pi-border-color pi-theme-blue" >
+
+    <div class="pi-header-stripe">
+      Алладин
+    </div>
+
+    <figure class="pi-item pi-image">
+      <img src="https://litinteres.ru/wp-content/uploads/2020/11/D3APwxhWoAAd1qT.jpg" alt="Image description" class="pi-item pi-image" object-fit="cover">
+    </figure>
+
+    <section class="pi-group pi-border-color">
+      <h2 class="pi-header-stripe-all">Пол</h2>
+      Мужской
+    </section>
+
+    <section class="pi-item pi-group pi-border-color">
+      <h2 class="pi-header-stripe-all">Возраст</h2>
+      18-22 года
+    </section>
+
+    <section class="pi-item pi-group pi-border-color">
+      <h2 class="pi-header-stripe-all">Семейное положение</h2>
+      Жена - Жасмин
+    </section>
+  </aside>
+  </div>
+  <div>
+    <div class="charaj">
+      Биография и сюжет:
+    </div>
+    <br>
+    <br>
+    Алладин - главный герой мультфильма "Аладдин". Он был сиротой, который жил на улицах Аграбы вместе со своей обезьянкой Абу. Алладин был добрым и отзывчивым юношей, но он также был хитрым и находчивым. Он всегда умел выкрутиться из любой ситуации.
+    <br>
+    <br>
+    Однажды Алладин встретил принцессу Жасмин, которая сбежала из дворца. Алладин влюбился в Жасмин, и они вместе отправились на поиски волшебной лампы.
+    <br>
+    <br>
+    Алладину удалось заполучить лампу, и он освободил из неё Джинна. Джинн пообещал исполнить три желания Алладина.
+    <br>
+    <br>
+    Алладин использовал своё первое желание, чтобы стать принцем. Он и Жасмин поженились, и они стали править Аграбой вместе.
+    <br>
+    <br>
+    <div class="charaj">
+      Характер персонажа:
+    </div>
+    <br>
+    <br>
+    Алладин - добрый, отзывчивый, смелый и находчивый юноша. Он всегда готов помочь другим, даже если это опасно для него самого. Он верит в добро и справедливость, и он всегда побеждает зло.
+    <br>
+    <br>
+    <div class="gorj">
+
+    <div class="charaj">
+      Места появления:
+    </div>
+    <br>
+    <br>
+    Улицы Аграбы, дворец, пещера чудес, воздушный корабль
+    <br>
+    <br>
+    </div>
+  </div>
+<footer>
+  <div class="footer-content">
+    <div class="footer-logo">
+      <img src="https://kokoc.com/upload/blog/611/6.png" alt="Дисней Лого">
+    </div>
+    <div class="social-media">
+      <p>Социальные сети:</p>
+      <a href="https://vk.com/kohaser" target="_blank">
+        <img src="https://deskmed.ru/wp-content/files/photo-2-1536x1536.png" alt="VK Icon">
+      </a>
+      <a href="https://t.me/krakila" target="_blank">
+        <img src="https://artgambling.ru/telegram_logo.png" alt="Telegram Icon">
+      </a>
+    </div>
+    <div class="contact-info">
+      <p>Связаться с нами:</p>
+      <a href="tel:+1234567890">+79163922068</a>
+      <a href="mailto:info@disney.com">boychakter24@mail.ru</a>
+    </div>
+  </div>
+  <p>&copy; 2023 Дисней. Все права защищены.</p>
+</footer>
+<script>
+  function toggleMenu() {
+    var menu = document.querySelector('.menu');
+    var burgerBtn = document.querySelector('.burger-btn');
+    if (menu.style.display === 'block') {
+      menu.style.display = 'none';
+      burgerBtn.textContent = '☰';
+    } else {
+      menu.style.display = 'block';
+      burgerBtn.textContent = '✖';
+    }
+  }
+</script>
+</body>
+</html>
